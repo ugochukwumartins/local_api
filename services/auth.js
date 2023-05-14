@@ -2,6 +2,7 @@ const passport = require("passport");
 const localStrtegy = require("passport-local").Strategy;
 const usersModel = require("../models/userModel");
 const HeaderAPIKeyStrategy = require('passport-headerapikey').HeaderAPIKeyStrategy
+const keygen = require('../utils/utilsfile')
 const jwtStrategy = require("passport-jwt").Strategy;
 const extractJwt = require("passport-jwt").ExtractJwt;
 
@@ -49,12 +50,12 @@ const extractJwt = require("passport-jwt").ExtractJwt;
              
               //const user_type= req.body.user_type;
             const  user_name= req.body.user_name;
-             
+             const api_key =  keygen.tokenGen;
               const user = await usersModel.create({
                 email,
                 password,
                 user_name,
-              
+                api_key,
               });
               return done(null, user);
             } catch (error) {
@@ -71,16 +72,16 @@ const extractJwt = require("passport-jwt").ExtractJwt;
     new localStrtegy(
          { usernameField: "username",
           passwordField: "password", 
-        }, async (username, password, done) => { 
+        }, async (username, api_keys, done) => { 
             try {
                  const user = await usersModel.findOne({email: username });
                   console.log(user);
                    if (!user) { 
                     return done(null, false, { message: "user not found" });
                  }
-                  const validated = await user.isValidPasswor(password); 
+                  const validated = await user.isValidkey(api_keys); 
                   if (!validated) {
-                     return done(null, false, { message: "wrong password" });
+                     return done(null, false, { message: "wrong api_key" });
                      }
                     return done(null, user, { message: "user login successfully" });
                 }
