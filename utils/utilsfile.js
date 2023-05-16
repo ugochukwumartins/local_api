@@ -1,7 +1,5 @@
 
 exports.tokenGen =  () => {
-    return[...Array(30)]
-    .map((e) => ((Math.random() * 36) | 0)
-    .toString(36))
-    .join('');
+    keyval = [...Array(30)].map((e) => ((Math.random() * 36) | 0).toString(36)).join('');
+    return keyval;
 };

@@ -3,6 +3,7 @@ const moment = require("moment");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const path = require("path");
+const userRoute = require("./routes/user");
 const passport = require("passport");
 const { connectToDb } = require("./db");
 
@@ -11,6 +12,7 @@ require("dotenv").config();
 
 const app = express();
 
+app.use(passport.initialize());
 
 require("dotenv").config();
 
@@ -20,6 +22,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "public")));
 
+app.use(userRoute);
 
 connectToDb();
 

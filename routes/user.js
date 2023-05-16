@@ -14,4 +14,6 @@ function(req, res) {
   res.json({ message: "Authenticated" })
 }
 , userController.login);
+
+module.exports = localRouter;
   

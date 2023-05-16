@@ -3,11 +3,12 @@ const localStrtegy = require("passport-local").Strategy;
 const usersModel = require("../models/userModel");
 const HeaderAPIKeyStrategy = require('passport-headerapikey').HeaderAPIKeyStrategy
 const keygen = require('../utils/utilsfile')
-const jwtStrategy = require("passport-jwt").Strategy;
-const extractJwt = require("passport-jwt").ExtractJwt;
+
 
 
 // passport.use(
+ // const jwtStrategy = require("passport-jwt").Strategy;
+//const extractJwt = require("passport-jwt").ExtractJwt;
 //     new jwtStrategy(
 //       {
 //         secretOrKey: process.env.JWT_SECRETE,
@@ -25,11 +26,15 @@ const extractJwt = require("passport-jwt").ExtractJwt;
 
  
     
-  passport.use(new HeaderAPIKeyStrategy(
-    { header: 'Authorization', prefix: 'Api-Key ' },
+  passport.use(
+    new HeaderAPIKeyStrategy(
+    { 
+      header: 'Authorization',
+     prefix: 'Api-Key ' 
+    },
     false,
     function(apikey, done) {
-      User.findOne({ apikey: apikey }, function (err, user) {
+      usersModel.findOne({ apikey: apikey }, function (err, user) {
         if (err) { return done(err); }
         if (!user) { return done(null, false); }
         return done(null, user);
