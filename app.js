@@ -9,10 +9,11 @@ const { connectToDb } = require("./db");
 
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
-
+require("./services/auth")
 const app = express();
 
 app.use(passport.initialize());
+
 
 require("dotenv").config();
 

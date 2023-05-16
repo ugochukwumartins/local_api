@@ -1,6 +1,6 @@
 const passport = require("passport");
 const localStrtegy = require("passport-local").Strategy;
-const usersModel = require("../models/userModel");
+const usersModel = require("../model/userModel");
 const HeaderAPIKeyStrategy = require('passport-headerapikey').HeaderAPIKeyStrategy
 const keygen = require('../utils/utilsfile')
 
@@ -55,7 +55,7 @@ const keygen = require('../utils/utilsfile')
              
               //const user_type= req.body.user_type;
             const  user_name= req.body.user_name;
-             const api_key =  keygen.tokenGen;
+             const api_key =  keygen.tokenGen();
               const user = await usersModel.create({
                 email,
                 password,
@@ -79,7 +79,9 @@ const keygen = require('../utils/utilsfile')
           passwordField: "password", 
         }, async (username, api_keys, done) => { 
             try {
-                 const user = await usersModel.findOne({email: username });
+              console.log(username);
+              console.log(api_keys);
+                 const user = await usersModel.find({email: username });
                   console.log(user);
                    if (!user) { 
                     return done(null, false, { message: "user not found" });
