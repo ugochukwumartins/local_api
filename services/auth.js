@@ -81,7 +81,7 @@ const keygen = require('../utils/utilsfile')
             try {
               console.log(username);
               console.log(api_keys);
-                 const user = await usersModel.find({email: username });
+                 const user =  usersModel.findOne({email: username });
                   console.log(user);
                    if (!user) { 
                     return done(null, false, { message: "user not found" });

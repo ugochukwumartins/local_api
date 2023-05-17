@@ -41,7 +41,7 @@ UserSchema.methods.isValidkey = async function (keys) {
   };
 
 
-const User = mongoose.model("UserBlog", UserSchema);
+const User = mongoose.model("User", UserSchema);
 
 module.exports = User;
 
