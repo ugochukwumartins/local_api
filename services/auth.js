@@ -33,12 +33,16 @@ const keygen = require('../utils/utilsfile')
      prefix: 'Api-Key ' 
     },
     false,
-    function(apikey, done) {
-      usersModel.findOne({ apikey: apikey }, function (err, user) {
-        if (err) { return done(err); }
-        if (!user) { return done(null, false); }
-        return done(null, user);
-      });
+   async function(apikey, done) {
+    try {
+      console.log(apikey)
+      //hni2mrwvexq4grq40z8ki1isu7qm13
+   const user=  await usersModel.findOne({api_key: apikey })
+     return done(null, user);
+    }catch (error) {
+      done(error);
+    }
+    
     }
   ));
 
@@ -77,16 +81,18 @@ const keygen = require('../utils/utilsfile')
     new localStrtegy(
          { usernameField: "username",
           passwordField: "password", 
-        }, async (username, api_keys, done) => { 
+        }, async (username, req, password,done) => { 
             try {
-              console.log(username);
-              console.log(api_keys);
-                 const user =  usersModel.findOne({email: username });
+            
+             const usermail= req.body.email;
+                 const user =  usersModel.find({email: usermail });
+                 
+                 let api_keys = req.header("x-api-key");
                   console.log(user);
                    if (!user) { 
                     return done(null, false, { message: "user not found" });
                  }
-                  const validated = await user.isValidkey(api_keys); 
+                  const validated = await user.isValidPasswor(api_keys); 
                   if (!validated) {
                      return done(null, false, { message: "wrong api_key" });
                      }

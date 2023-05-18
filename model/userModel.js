@@ -34,7 +34,7 @@ UserSchema.methods.isValidPasswor = async function (password) {
   return compare;
 };
 
-UserSchema.methods.isValidkey = async function (keys) {
+UserSchema.methods.validkey =  function (keys) {
     const user = this;
     const compare = keys === user.api_key;
     return compare;

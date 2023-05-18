@@ -8,12 +8,7 @@ const localRouter = express.Router();
 
   
 localRouter.post("/signUp",userController.signup );
-localRouter.post("/login",
-passport.authenticate('headerapikey', { session: false }),
-function(req, res) {
-  res.json({ message: "Authenticated" })
-}
-, userController.login);
+localRouter.post("/login",passport.authenticate('headerapikey', { session: false }), userController.login);
 
 module.exports = localRouter;
   
