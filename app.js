@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const path = require("path");
 const userRoute = require("./routes/user");
+const stateRoute = require("./routes/state");
 const passport = require("passport");
 const { connectToDb } = require("./db");
 
@@ -24,7 +25,7 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use(userRoute);
-
+app.use(stateRoute)
 connectToDb();
 
 
