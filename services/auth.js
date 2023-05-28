@@ -35,7 +35,7 @@ const keygen = require('../utils/utilsfile')
     false,
    async function(apikey, done) {
     try {
-      console.log(apikey)
+      // console.log(apikey)
       //hni2mrwvexq4grq40z8ki1isu7qm13
    const user=  await usersModel.findOne({api_key: apikey })
      return done(null, user);
