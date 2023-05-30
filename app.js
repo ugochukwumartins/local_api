@@ -6,6 +6,7 @@ const path = require("path");
 const userRoute = require("./routes/user");
 const stateRoute = require("./routes/state");
 const passport = require("passport");
+const rateLimit = require ("express-rate-limit")
 const { connectToDb } = require("./db");
 
 const jwt = require("jsonwebtoken");
@@ -23,6 +24,14 @@ let User;
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "public")));
+const limiter = rateLimit({
+	windowMs: 1440 * 60 * 1000, // 15 minutes
+	max: 100, 
+	standardHeaders: true, 
+	legacyHeaders: false, 
+})
+
+app.use(limiter);
 
 app.use(userRoute);
 app.use(stateRoute)
