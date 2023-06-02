@@ -8,7 +8,7 @@ const stateRouter = express.Router();
 
 
   
-stateRouter.post("/ctreate_state",stateController.createState );
+// stateRouter.post("/ctreate_state",stateController.createState );
 //localRouter.post("/login",passport.authenticate('headerapikey', { session: false }), userController.login);
 stateRouter.get("/get_state",passport.authenticate('headerapikey', { session: false }),stateControllers.getState);
 stateRouter.get("/get_stateBySlogan",passport.authenticate('headerapikey', { session: false }),stateControllers.getAStateBySlogan);

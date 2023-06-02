@@ -5,6 +5,7 @@ const bodyParser = require("body-parser");
 const path = require("path");
 const userRoute = require("./routes/user");
 const stateRoute = require("./routes/state");
+const Cache = require('./config/redisconfi');
 const passport = require("passport");
 const rateLimit = require ("express-rate-limit")
 const { connectToDb } = require("./db");
@@ -12,6 +13,7 @@ const { connectToDb } = require("./db");
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
 require("./services/auth")
+
 const app = express();
 
 app.use(passport.initialize());
@@ -37,7 +39,7 @@ app.use(userRoute);
 app.use(stateRoute)
 connectToDb();
 
-
+Cache.connect()
 app.listen(PORT, () => {
     console.log("Listening on port, ", PORT);
   });
