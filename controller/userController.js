@@ -41,10 +41,12 @@ if(!user){
 }
 req.login(user, {session :false}, async (error)=>{
     if(error) return next(error);
-    console.log(user);
+    res.json({ message: user.api_key});
 
 })
-res.send(user.api_key)
+//res.sendStatus(200);
+//res.json({ message: user.api_key, statusCode:res.sendStatus(200)});
+//res.send(user.api_key)
     }
     catch(e){
         res.send(e.message)
