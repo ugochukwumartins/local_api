@@ -8,24 +8,6 @@ const usersModel = require("../model/userModel");
 exports.signup = async (req, res, next) => {
 
 
-    // try {
-             
-    //     //const user_type= req.body.user_type;
-    //     const   email= req.body.email;
-    //     const  password = req.body.password;
-    //   const  user_name= req.body.user_name;
-    //    const api_key =  keygen.tokenGen();
-    //     const user = await usersModel.create({
-    //       email,
-    //       password,
-    //       user_name,
-    //       api_key,
-    //     });
-    //     return res.json({ status: true, message: "this is a blog",  user });
-    //   } catch (error) {
-    //     res.json({ status: false, message: error , error });
-        
-    //   }
 passport.authenticate("signup", async (erro, user, info)=>{
     try{
 console.log(user);
