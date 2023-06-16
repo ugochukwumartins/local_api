@@ -8,6 +8,7 @@ const stateRoute = require("./routes/state");
 const Cache = require('./config/redisconfi');
 const passport = require("passport");
 const rateLimit = require ("express-rate-limit")
+const swagger = require ("./utils/swagger")
 const { connectToDb } = require("./db");
 
 const jwt = require("jsonwebtoken");
@@ -42,6 +43,7 @@ connectToDb();
 Cache.connect()
 app.listen(PORT, () => {
     console.log("Listening on port, ", PORT);
+	swagger.swaggerDocs(app,PORT)
   });
   
   module.exports = app;
