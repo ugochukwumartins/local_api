@@ -8,7 +8,11 @@ const options = {
       title: 'Local API',
       description: 'To get list of state and local govt in Nigeria ',
       version: '1.0.0',
+      contact: {
+        email: 'uokorocha72@gmail.com'
+      }
     },
+    
     servers:[
         {
           url: 'http://localhost:3000/'
