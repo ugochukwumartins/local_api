@@ -34,10 +34,17 @@ stateRouter.get("/get_state",passport.authenticate('headerapikey', { session: fa
 
 /**
  * @swagger
- * /get_stateBySlogan:
+ * /get_stateBySlogan/{slogan}:
  *   get:
  *     summary: Get a state in Nigeria by Slogan
  *     description: Retrieve state and local government  data from the server with a single call
+ *     parameters:
+ *          - in: path
+ *            name: slogan
+ *            required: true
+ *            description: eg God's Own State please follow the type format
+ *            schema:
+ *              type: string
  *     responses:
  *       200:
  *         description: Successful response
@@ -50,14 +57,21 @@ stateRouter.get("/get_state",passport.authenticate('headerapikey', { session: fa
  *                   type: string
  *                   description: Response message
  */
-stateRouter.get("/get_stateBySlogan",passport.authenticate('headerapikey', { session: false }),stateControllers.getAStateBySlogan);
+stateRouter.get("/get_stateBySlogan/:slogan",passport.authenticate('headerapikey', { session: false }),stateControllers.getAStateBySlogan);
 
 /**
  * @swagger
- * /get_state_ByDialect:
+ * /get_state_ByDialect/{dialect}:
  *   get:
  *     summary: Get all state in Nigeria by dialect
  *     description: Retrieve state and local government  data from the server with a single call
+ *     parameters:
+ *          - in: path
+ *            name: dialect
+ *            required: true
+ *            description:  eg Igbo please follow the type format
+ *            schema:
+ *              type: string
  *     responses:
  *       200:
  *         description: Successful response
@@ -70,14 +84,21 @@ stateRouter.get("/get_stateBySlogan",passport.authenticate('headerapikey', { ses
  *                   type: string
  *                   description: Response message
  */
-stateRouter.get("/get_state_ByDialect",passport.authenticate('headerapikey', { session: false }),stateControllers.getAStateByDialect);
+stateRouter.get("/get_state_ByDialect/:dialect",passport.authenticate('headerapikey', { session: false }),stateControllers.getAStateByDialect);
 
 /**
  * @swagger
- * /get_a_state:
+ * /get_a_state/{state}:
  *   get:
  *     summary: Get a state in Nigeria
  *     description: Retrieve state and local government  data from the server with a single call
+ *     parameters:
+ *          - in: path
+ *            name: state
+ *            required: true
+ *            description: eg Abia please follow the type format
+ *            schema:
+ *              type: string
  *     responses:
  *       200:
  *         description: Successful response
@@ -90,14 +111,21 @@ stateRouter.get("/get_state_ByDialect",passport.authenticate('headerapikey', { s
  *                   type: string
  *                   description: Response message
  */
-stateRouter.get("/get_a_state",passport.authenticate('headerapikey', { session: false }),stateControllers.getAState);
+stateRouter.get("/get_a_state/:state",passport.authenticate('headerapikey', { session: false }),stateControllers.getAState);
 
 /**
  * @swagger
- * /get_a_state_byCapital:
+ * /get_a_state_byCapital/{capital}:
  *   get:
  *     summary: Get a state in Nigeria by capital
  *     description: Retrieve state and local government  data from the server with a single call
+ *     parameters:
+ *          - in: path
+ *            name: capital
+ *            required: true
+ *            description: eg Ikeja please follow the type format
+ *            schema:
+ *              type: string
  *     responses:
  *       200:
  *         description: Successful response
@@ -110,14 +138,21 @@ stateRouter.get("/get_a_state",passport.authenticate('headerapikey', { session: 
  *                   type: string
  *                   description: Response message
  */
-stateRouter.get("/get_a_state_byCapital",passport.authenticate('headerapikey', { session: false }),stateControllers.getAStateByCapital);
+stateRouter.get("/get_a_state_byCapital/:capital",passport.authenticate('headerapikey', { session: false }),stateControllers.getAStateByCapital);
 
 /**
  * @swagger
- * /get_state_by_region:
+ * /get_state_by_region/{geo_politcal_zone}:
  *   get:
  *     summary: Get all state in Nigeria by reagin
  *     description: Retrieve states and and number of states  data from the server with a single call
+ *     parameters:
+ *          - in: path
+ *            name: geo_politcal_zone
+ *            required: true
+ *            description: enter your region eg North East please follow the type format
+ *            schema:
+ *              type: string
  *     responses:
  *       200:
  *         description: Successful response
@@ -130,7 +165,7 @@ stateRouter.get("/get_a_state_byCapital",passport.authenticate('headerapikey', {
  *                   type: string
  *                   description: Response message
  */
-stateRouter.get("/get_state_by_region",passport.authenticate('headerapikey', { session: false }),stateControllers.getStateByRegion);
+stateRouter.get("/get_state_by_region/:geo_politcal_zone",passport.authenticate('headerapikey', { session: false }),stateControllers.getStateByRegion);
 
 /**
  * @swagger
@@ -161,10 +196,17 @@ stateRouter.get("/get_state_by_region",passport.authenticate('headerapikey', { s
 
 /**
  * @swagger
- * /get_state_details_by_region:
+ * /get_state_details_by_region/{geo_politcal_zone}:
  *   get:
  *     summary: Get all state in Nigeria by region
  *     description: Retrieve states and local government  data from the server with a single call
+ *     parameters:
+ *          - in: path
+ *            name: geo_politcal_zone
+ *            required: true
+ *            description: enter your region eg North East please follow the type format
+ *            schema:
+ *              type: string
  *     responses:
  *       200:
  *         description: Successful response
@@ -175,5 +217,5 @@ stateRouter.get("/get_state_by_region",passport.authenticate('headerapikey', { s
  *               items:
  *                 $ref: '#components/schema/State'
  */
-stateRouter.get("/get_state_details_by_region",passport.authenticate('headerapikey', { session: false }),stateControllers.getStateDetailsByRegion);
+stateRouter.get("/get_state_details_by_region/:geo_politcal_zone",passport.authenticate('headerapikey', { session: false }),stateControllers.getStateDetailsByRegion);
 module.exports = stateRouter;

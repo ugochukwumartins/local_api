@@ -35,7 +35,7 @@ exports.getState = async (req, res, next) => {
 exports.getStateByRegion = async (req, res, next) => {
     var State = [];
     try {
-        const cacheKey = `AllStates${req.body.geo_politcal_zone}`;
+        const cacheKey = `AllStatese${req.params.geo_politcal_zone}`;
 
         const cachedState = await Cache.redis.get(cacheKey);
 
@@ -43,7 +43,7 @@ exports.getStateByRegion = async (req, res, next) => {
             // Cache hit
             return res.json({ status: true, order: JSON.parse(cachedState) })
         } else {
-            const States = await stateModel.find({ geo_politcal_zone: req.body.geo_politcal_zone }, 'state');
+            const States = await stateModel.find({ geo_politcal_zone: req.params.geo_politcal_zone }, 'state');
             States.forEach((value, index) => {
                 State.push(value.state);
 
@@ -64,7 +64,7 @@ exports.getStateByRegion = async (req, res, next) => {
 exports.getStateDetailsByRegion = async (req, res, next) => {
 
     try {
-        const cacheKey = `AllStates${req.body.geo_politcal_zone}`;
+        const cacheKey = `AllStates${req.params.geo_politcal_zone}`;
 
         const cachedState = await Cache.redis.get(cacheKey);
 
@@ -72,7 +72,7 @@ exports.getStateDetailsByRegion = async (req, res, next) => {
             // Cache hit
             return res.json({ status: true, order: JSON.parse(cachedState) })
         } else {
-            const State = await stateModel.find({ geo_politcal_zone: req.body.geo_politcal_zone })
+            const State = await stateModel.find({ geo_politcal_zone: req.params.geo_politcal_zone })
 
 
             Cache.redis.setEx(cacheKey, 600, JSON.stringify(State))
@@ -88,7 +88,7 @@ exports.getStateDetailsByRegion = async (req, res, next) => {
 exports.getAState = async (req, res, next) => {
 
     try {
-        const cacheKey = `AllStates${req.body.state}`;
+        const cacheKey = `AllStates${req.params.state}`;
 
         const cachedState = await Cache.redis.get(cacheKey);
 
@@ -96,7 +96,7 @@ exports.getAState = async (req, res, next) => {
             // Cache hit
             return res.json({ status: true, order: JSON.parse(cachedState) })
         } else {
-            const State = await stateModel.findOne({ state: req.body.state })
+            const State = await stateModel.findOne({ state: req.params.state })
 
 
             Cache.redis.setEx(cacheKey, 600, JSON.stringify(State))
@@ -112,7 +112,7 @@ exports.getAState = async (req, res, next) => {
 exports.getAStateByCapital = async (req, res, next) => {
 
     try {
-        const cacheKey = `AllStates${req.body.capital}`;
+        const cacheKey = `AllStates${req.params.capital}`;
 
         const cachedState = await Cache.redis.get(cacheKey);
 
@@ -120,7 +120,7 @@ exports.getAStateByCapital = async (req, res, next) => {
             // Cache hit
             return res.json({ status: true, order: JSON.parse(cachedState) })
         } else {
-            const State = await stateModel.findOne({ capital: req.body.capital })
+            const State = await stateModel.findOne({ capital: req.params.capital })
 
             Cache.redis.setEx(cacheKey, 600, JSON.stringify(State))
 
@@ -136,7 +136,7 @@ exports.getAStateByCapital = async (req, res, next) => {
 exports.getAStateBySlogan = async (req, res, next) => {
 
     try {
-        const cacheKey = `AllStates${req.body.slogan}`;
+        const cacheKey = `AllStates${req.params.slogan}`;
 
         const cachedState = await Cache.redis.get(cacheKey);
 
@@ -144,7 +144,7 @@ exports.getAStateBySlogan = async (req, res, next) => {
             // Cache hit
             return res.json({ status: true, order: JSON.parse(cachedState) })
         } else {
-            const State = await stateModel.findOne({ slogan: req.body.slogan })
+            const State = await stateModel.findOne({ slogan: req.params.slogan })
 
 
             Cache.redis.setEx(cacheKey, 600, JSON.stringify(State))
@@ -160,7 +160,7 @@ exports.getAStateBySlogan = async (req, res, next) => {
 exports.getAStateByDialect = async (req, res, next) => {
 
     try {
-        const cacheKey = `AllStates${req.body.dialect}`;
+        const cacheKey = `AllStates${req.params.dialect}`;
 
         const cachedState = await Cache.redis.get(cacheKey);
 
@@ -168,7 +168,7 @@ exports.getAStateByDialect = async (req, res, next) => {
             // Cache hit
             return res.json({ status: true, order: JSON.parse(cachedState) })
         } else {
-            const State = await stateModel.find({ dialect: req.body.dialect })
+            const State = await stateModel.find({ dialect: req.params.dialect })
 
             Cache.redis.setEx(cacheKey, 600, JSON.stringify(State))
 
