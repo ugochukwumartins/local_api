@@ -12,7 +12,21 @@ const options = {
         email: 'uokorocha72@gmail.com'
       }
     },
-    
+    "components": {
+      "securitySchemes": {
+        "Authorization": {
+             "description": "",
+             "type": "apiKey",
+             "name": "Authorization",
+             "in": "header"
+          }
+      }
+    },
+  "security": [
+    {
+       "Authorization": []
+    }
+  ],
     servers:[
         {
           url: 'http://localhost:3000/'

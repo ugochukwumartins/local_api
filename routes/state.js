@@ -18,13 +18,6 @@ const stateRouter = express.Router();
  *   get:
  *     summary: Get all state in Nigeria
  *     description: Retrieve states and local government  data from the server with a single call
- *     parameters:
- *       - in: query
- *         name: Authorization
- *         schema:
- *           type: string
- *         required: true
- *         description: API key for authentication Prefix Api-Key
  *     responses:
  *       200:
  *         description: Successful response
@@ -45,13 +38,6 @@ stateRouter.get("/get_state",passport.authenticate('headerapikey', { session: fa
  *   get:
  *     summary: Get a state in Nigeria by Slogan
  *     description: Retrieve state and local government  data from the server with a single call
- *     parameters:
- *       - in: query
- *         name: Authorization
- *         schema:
- *           type: string
- *         required: true
- *         description: API key for authentication Prefix Api-Key
  *     responses:
  *       200:
  *         description: Successful response
@@ -72,13 +58,6 @@ stateRouter.get("/get_stateBySlogan",passport.authenticate('headerapikey', { ses
  *   get:
  *     summary: Get all state in Nigeria by dialect
  *     description: Retrieve state and local government  data from the server with a single call
- *     parameters:
- *       - in: query
- *         name: Authorization
- *         schema:
- *           type: string
- *         required: true
- *         description: API key for authentication Prefix Api-Key
  *     responses:
  *       200:
  *         description: Successful response
@@ -99,13 +78,6 @@ stateRouter.get("/get_state_ByDialect",passport.authenticate('headerapikey', { s
  *   get:
  *     summary: Get a state in Nigeria
  *     description: Retrieve state and local government  data from the server with a single call
- *     parameters:
- *       - in: query
- *         name: Authorization
- *         schema:
- *           type: string
- *         required: true
- *         description: API key for authentication Prefix Api-Key
  *     responses:
  *       200:
  *         description: Successful response
@@ -126,13 +98,6 @@ stateRouter.get("/get_a_state",passport.authenticate('headerapikey', { session: 
  *   get:
  *     summary: Get a state in Nigeria by capital
  *     description: Retrieve state and local government  data from the server with a single call
- *     parameters:
- *       - in: query
- *         name: Authorization
- *         schema:
- *           type: string
- *         required: true
- *         description: API key for authentication Prefix Api-Key
  *     responses:
  *       200:
  *         description: Successful response
@@ -153,13 +118,6 @@ stateRouter.get("/get_a_state_byCapital",passport.authenticate('headerapikey', {
  *   get:
  *     summary: Get all state in Nigeria by reagin
  *     description: Retrieve states and and number of states  data from the server with a single call
- *     parameters:
- *       - in: query
- *         name: Authorization
- *         schema:
- *           type: string
- *         required: true
- *         description: API key for authentication Prefix Api-Key
  *     responses:
  *       200:
  *         description: Successful response
@@ -207,13 +165,6 @@ stateRouter.get("/get_state_by_region",passport.authenticate('headerapikey', { s
  *   get:
  *     summary: Get all state in Nigeria by region
  *     description: Retrieve states and local government  data from the server with a single call
- *     parameters:
- *       - in: path
- *         name: Authorization
- *         schema:
- *           type: string
- *         required: true
- *         description: API key for authentication Prefix Api-Key
  *     responses:
  *       200:
  *         description: Successful response
