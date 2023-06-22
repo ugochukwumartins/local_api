@@ -1,10 +1,11 @@
 const Redis = require('redis');
+require("dotenv").config();
+
+const Connection_Url= process.env.REDIS;
 
 
-const REDIS_USERNAME = 'default';
-const REDIS_PORT =  6379;
-const REDIS_HOST = '127.0.0.1';
-const REDIS_PASSWORD =  null;
+
+
 
 class Cache {
     constructor() {
@@ -14,7 +15,7 @@ class Cache {
     async connect() {
         try {
             this.redis = await Redis.createClient({
-                url: `redis://${REDIS_USERNAME}:${REDIS_PASSWORD}@${REDIS_HOST}:${REDIS_PORT}`
+                url: Connection_Url
             });
 
             this.redis.connect()
