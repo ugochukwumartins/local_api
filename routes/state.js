@@ -1,6 +1,5 @@
 const express= require('express');
 const passport = require("passport")
-const stateController = require('../controller/addStateController');
 const stateControllers = require('../controller/stateController');
 const stateRouter = express.Router();
 
