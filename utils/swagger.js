@@ -29,7 +29,7 @@ const options = {
   ],
     servers:[
         {
-          url: 'http://localhost:3000/'
+          url: 'https://local-api-2b49.onrender.com/'
         }
     ]
   },
