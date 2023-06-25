@@ -9,6 +9,7 @@ const Cache = require('./config/redisconfi');
 const passport = require("passport");
 const rateLimit = require ("express-rate-limit")
 const swagger = require ("./utils/swagger")
+const cors = require('cors')
 const { connectToDb } = require("./db");
 
 const jwt = require("jsonwebtoken");
@@ -17,12 +18,7 @@ require("./services/auth")
 
 const app = express();
 
-// app.use((req, res, next) => {
-// 	res.header('Access-Control-Allow-Origin', '*');
-// 	res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-// 	res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-// 	next();
-//   });
+
 app.use(passport.initialize());
 
 
@@ -33,6 +29,10 @@ let User;
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "public")));
+app.use(cors({
+    origin: '*'
+}));
+
 const limiter = rateLimit({
 	windowMs: 1440 * 60 * 1000, // 15 minutes
 	max: 100, 
